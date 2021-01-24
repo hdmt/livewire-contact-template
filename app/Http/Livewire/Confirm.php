@@ -4,7 +4,8 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\TestMail;
+use App\Mail\Contact;
+use Illuminate\Support\Arr;
 
 class Confirm extends Component
 {
@@ -19,7 +20,14 @@ class Confirm extends Component
     public function submit()
     {
         // メール送信
-        
+        $recipients = [
+            Arr::get($this->posts, 'email'),
+            env('MAIL_ADMIN_ADDRESS')
+        ];
+
+        foreach ($recipients as $recipient) {
+            Mail::to($recipient)->send(new Contact($this->posts));
+        }
 
         // セッションクリア
         session()->flush();

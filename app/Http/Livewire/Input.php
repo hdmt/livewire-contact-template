@@ -12,7 +12,7 @@ class Input extends Component
 
     protected $rules = [
         'posts.name' => 'required',
-        // 'email' => 'required|email',
+        'posts.email' => 'required|email',
         // 'comment' => 'required|min:5',
     ];
 
