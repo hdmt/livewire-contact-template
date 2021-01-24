@@ -4,23 +4,24 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-
 class Input extends Component
 {
 
-    public $name;
-    public $email;
-    public $comment;
-    public $success;
+    public $posts;
+    public $prefectures = ['東京都','北海道'];
+
     protected $rules = [
-        'name' => 'required',
-        'email' => 'required|email',
+        'posts.name' => 'required',
+        // 'email' => 'required|email',
         // 'comment' => 'required|min:5',
     ];
 
-    public function submit()
+    public function confirm()
     {
         $this->validate();
+
+        //セッション登録
+        session()->put('posts', $this->posts);
 
         return redirect()->route('confirm');
 

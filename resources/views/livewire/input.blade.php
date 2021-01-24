@@ -1,4 +1,4 @@
-<form method="post" path="/">
+<form wire:submit.prevent="confirm">
 @csrf
     <div>
         <div>
@@ -10,14 +10,18 @@
         <div class="mt-8">
             <span class="text-sm font-bold text-gray-600 uppercase">お名前（必須）</span>
             <input
+                wire:model="posts.name"
                 class="w-full p-3 mt-2 text-gray-900 bg-white rounded-lg focus:outline-none focus:shadow-outline"
                 type="text" placeholder="鈴木一郎">
+            @error('posts.name') <span class="err-message">{{ $message }}</span> @enderror
         </div>
         <div class="mt-8">
             <span class="text-sm font-bold text-gray-600 uppercase">メールアドレス（必須）</span>
             <input
+                wire:model="posts.email"
                 class="w-full p-3 mt-2 text-gray-900 bg-white rounded-lg focus:outline-none focus:shadow-outline"
                 type="text" placeholder="mail@example.com">
+            @error('email') <span class="err-message">{{ $message }}</span> @enderror
         </div>
         <div class="mt-8">
             <span class="text-sm font-bold text-gray-600 uppercase">電話番号</span>
@@ -50,23 +54,23 @@
         </div>
 
 <div class="flex flex-wrap m-6 mb-2 -mx-3">
-    <div class="w-full px-3 mb-6 md:w-1/3 md:mb-0">
+    <div class="w-full px-3 mb-6 md:w-1/2 md:mb-0">
         <label class="block mb-2 text-sm font-bold tracking-wide text-gray-700 uppercase"
             for="grid-zip">
             郵便番号
         </label>
         <input
-            class="block w-full px-4 py-3 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-zip" type="text" placeholder="90210">
+            class="block w-full px-4 py-3 leading-tight text-gray-700 bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+            id="grid-zip" type="text" placeholder="1000001">
     </div>
-    <div class="w-full px-3 mb-6 md:w-1/3 md:mb-0">
+    <div class="w-full px-3 mb-6 md:w-1/2 md:mb-0">
         <label class="block mb-2 text-sm font-bold tracking-wide text-gray-700 uppercase"
             for="grid-state">
             都道府県
         </label>
         <div class="relative">
             <select
-                class="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-gray-200 border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
+                class="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state">
                 <option>選択</option>
                 <option>東京都</option>
@@ -86,7 +90,7 @@
 </div>
 
 <div class="mt-8">
-            <span class="text-sm font-bold text-gray-600 uppercase">住所</span>
+            <span class="text-sm font-bold text-gray-600 uppercase">市区町村／番地</span>
             <textarea
                 class="w-full h-20 p-3 mt-2 text-gray-900 bg-white rounded-lg border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
         </div>
@@ -99,7 +103,7 @@
         <div class="mt-8">
             <button
                 class="w-full p-3 text-sm font-bold tracking-wide text-gray-100 uppercase bg-green-500 rounded-lg focus:outline-none focus:shadow-outline">
-                送信する
+                内容確認
             </button>
         </div>
     </div>

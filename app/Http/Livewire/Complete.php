@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-// use Mail;
 
 class Complete extends Component
 {
