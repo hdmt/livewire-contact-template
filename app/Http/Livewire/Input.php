@@ -16,6 +16,11 @@ class Input extends Component
         // 'comment' => 'required|min:5',
     ];
 
+    public function mount()
+    {
+        $this->posts = session()->get('posts');
+    }
+
     public function confirm()
     {
         $this->validate();

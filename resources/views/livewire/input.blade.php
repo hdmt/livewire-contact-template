@@ -8,6 +8,7 @@
                 type="text" placeholder="">
         </div>
         <div class="mt-8">
+        
             <span class="text-sm font-bold text-gray-600 uppercase">お名前（必須）</span>
             <input
                 wire:model="posts.name"
@@ -21,7 +22,7 @@
                 wire:model="posts.email"
                 class="w-full p-3 mt-2 text-gray-900 bg-white rounded-lg focus:outline-none focus:shadow-outline"
                 type="text" placeholder="mail@example.com">
-            @error('email') <span class="err-message">{{ $message }}</span> @enderror
+            @error('posts.email') <span class="err-message">{{ $message }}</span> @enderror
         </div>
         <div class="mt-8">
             <span class="text-sm font-bold text-gray-600 uppercase">電話番号</span>
