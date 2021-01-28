@@ -23,7 +23,7 @@
             メールアドレス
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{ @$posts['email'] }}
+            {{ @$posts['mail'] }}
             </dd>
         </div>
         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -39,7 +39,17 @@
             ご要望
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            
+            @foreach ($posts['request'] as $request)
+            {{$requestList[$request]}}<br>
+            @endforeach
+            </dd>
+        </div>
+        <div class="bg-gray-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt class="text-sm font-medium text-gray-500">
+            郵便番号
+            </dt>
+            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            {{ @$posts['zipcode'] }}
             </dd>
         </div>
         <div class="bg-gray-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -47,7 +57,7 @@
             住所
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            
+            {{ @$posts['prefecture'] }} {{ @$posts['address'] }}
             </dd>
         </div>
         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -55,7 +65,7 @@
             ご希望・ご質問
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            
+            {{ @$posts['comment'] }}
             </dd>
         </div>
         </dl>

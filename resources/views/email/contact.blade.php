@@ -7,7 +7,7 @@
 {{ Arr::get($posts, 'name') }}
 
 ■メールアドレス
-{{ Arr::get($posts, 'email') }}
+{{ Arr::get($posts, 'mail') }}
 
 ■電話番号
 {{ Arr::get($posts, 'tel', '-') }}

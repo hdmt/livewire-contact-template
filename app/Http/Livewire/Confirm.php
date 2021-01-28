@@ -11,20 +11,23 @@ class Confirm extends Component
 {
 
     public $posts;
+    public $requestList;
+    public $prefectures;
 
     public function mount()
     {
-         $this->posts = session()->get('posts');
+        $this->requestList = config('contact.requests');
+        $this->prefectures = config('contact.prefectures');
+        $this->posts = session()->get('posts');
     }
 
     public function submit()
     {
         // メール送信
-        $recipients = [
-            Arr::get($this->posts, 'email'),
-            env('MAIL_ADMIN_ADDRESS')
+        $recipients = [ 
+            Arr::get($this->posts, 'mail'),
+            config('app.admin_address')
         ];
-
         foreach ($recipients as $recipient) {
             Mail::to($recipient)->send(new Contact($this->posts));
         }
@@ -45,6 +48,5 @@ class Confirm extends Component
     public function render()
     {
         return view('livewire.confirm');
-        
     }
 }

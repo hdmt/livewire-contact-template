@@ -4,54 +4,51 @@
         <div>
             <span class="text-sm font-bold text-gray-600 uppercase">会社名</span>
             <input
-                class="w-full p-3 mt-2 text-gray-900 bg-white rounded-lg focus:outline-none focus:shadow-outline"
-                type="text" placeholder="">
+                wire:model="posts.company"
+                class="w-full p-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-lg focus:outline-none focus:bg-white focus:border-gray-500"
+                type="text" placeholder="株式会社○○">
         </div>
         <div class="mt-8">
         
             <span class="text-sm font-bold text-gray-600 uppercase">お名前（必須）</span>
             <input
                 wire:model="posts.name"
-                class="w-full p-3 mt-2 text-gray-900 bg-white rounded-lg focus:outline-none focus:shadow-outline"
+                class="w-full p-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-lg focus:outline-none focus:bg-white focus:border-gray-500"
                 type="text" placeholder="鈴木一郎">
             @error('posts.name') <span class="err-message">{{ $message }}</span> @enderror
         </div>
         <div class="mt-8">
             <span class="text-sm font-bold text-gray-600 uppercase">メールアドレス（必須）</span>
             <input
-                wire:model="posts.email"
-                class="w-full p-3 mt-2 text-gray-900 bg-white rounded-lg focus:outline-none focus:shadow-outline"
+                wire:model="posts.mail"
+                class="w-full p-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-lg focus:outline-none focus:bg-white focus:border-gray-500"
                 type="text" placeholder="mail@example.com">
-            @error('posts.email') <span class="err-message">{{ $message }}</span> @enderror
+            @error('posts.mail') <span class="err-message">{{ $message }}</span> @enderror
         </div>
         <div class="mt-8">
-            <span class="text-sm font-bold text-gray-600 uppercase">電話番号</span>
+            <span class="text-sm font-bold text-gray-600 uppercase">電話番号（必須）</span>
             <input
-                class="w-full p-3 mt-2 text-gray-900 bg-white rounded-lg focus:outline-none focus:shadow-outline"
+                wire:model="posts.tel"
+                class="w-full p-3 mt-2 text-gray-700 bg-white border border-gray-200 rounded-lg focus:outline-none focus:bg-white focus:border-gray-500"
                 type="text" placeholder="090xxxxxxxxx">
         </div>
         <div class="mt-8">
             <span class="text-sm font-bold text-gray-600 uppercase">ご要望（必須）</span>
             <div class="mt-2">
+                @foreach ($requestList as $key => $request)
                 <div>
                     <label class="inline-flex items-center">
-                        <input type="checkbox" class="form-checkbox h-5 w-5">
-                        <span class="ml-2">資料・サンプルが欲しい</span>
-                    </label>
-                    </div>
-                    <div>
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" class="form-checkbox h-5 w-5">
-                        <span class="ml-2">価格が知りたい</span>
-                    </label>
-                    </div>
-                    <div>
-                    <label class="inline-flex items-center">
-                        <input type="checkbox" class="form-checkbox h-5 w-5">
-                        <span class="ml-2">その他</span>
+                        <input wire:model="posts.request.{{$key}}" name="" value="{{$key}}" type="checkbox" class="form-checkbox h-5 w-5">
+                        <span class="ml-2">{{$request}}</span>
                     </label>
                 </div>
+                @endforeach
             </div>
+            @if ($errors->has('posts.request'))
+                <span class="err-message">{{ $errors->first('posts.request') }}</span>
+            @elseif ($errors->has('posts.request.*'))
+                <span class="err-message">{{ $errors->first('posts.request.*') }}</span>
+            @endif 
         </div>
 
 <div class="flex flex-wrap m-6 mb-2 -mx-3">
@@ -61,6 +58,7 @@
             郵便番号
         </label>
         <input
+            wire:model="posts.zipcode"
             class="block w-full px-4 py-3 leading-tight text-gray-700 bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
             id="grid-zip" type="text" placeholder="1000001">
     </div>
@@ -71,12 +69,13 @@
         </label>
         <div class="relative">
             <select
+                wire:model="posts.prefecture"
                 class="block w-full px-4 py-3 pr-8 leading-tight text-gray-700 bg-white border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"
                 id="grid-state">
                 <option>選択</option>
-                <option>東京都</option>
-                <option>東京都</option>
-                <option>鹿児島県</option>
+            @foreach($prefectures as $index => $name)
+                <option value="{{ $index }}">{{$name}}</option>
+            @endforeach
             </select>
             <div
                 class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
@@ -93,12 +92,14 @@
 <div class="mt-8">
             <span class="text-sm font-bold text-gray-600 uppercase">市区町村／番地</span>
             <textarea
+                wire:model="posts.address"
                 class="w-full h-20 p-3 mt-2 text-gray-900 bg-white rounded-lg border border-gray-200 rounded appearance-none focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
         </div>
 
         <div class="mt-8">
             <span class="text-sm font-bold text-gray-600 uppercase">ご希望・ご質問</span>
             <textarea
+                wire:model="posts.comment"
                 class="w-full h-32 p-3 mt-2 text-gray-900 bg-white rounded-lg focus:outline-none focus:shadow-outline"></textarea>
         </div>
         <div class="mt-8">
