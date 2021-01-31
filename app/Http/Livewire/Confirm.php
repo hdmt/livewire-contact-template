@@ -19,6 +19,9 @@ class Confirm extends Component
         $this->requestList = config('contact.requests');
         $this->prefectures = config('contact.prefectures');
         $this->posts = session()->get('posts');
+        if(empty($this->posts)){
+            return redirect()->route('home');
+        }
     }
 
     public function submit()
@@ -32,8 +35,7 @@ class Confirm extends Component
             Mail::to($recipient)->send(new Contact($this->posts));
         }
 
-        // セッションクリア
-        session()->flush();
+        
 
         // 完了画面へ
         return redirect()->route('complete');

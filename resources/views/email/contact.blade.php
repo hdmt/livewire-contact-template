@@ -12,15 +12,16 @@
 ■電話番号
 {{ Arr::get($posts, 'tel', '-') }}
 
-
 ■ご要望
-
+@foreach ($posts['request'] as $request)
+{{$requestList[$request]}}
+@endforeach
 
 ■郵便番号
 {{ Arr::get($posts, 'zip', '-') }}
 
 ■住所
-
+{{ @$prefectures[ $posts['prefecture'] ] }} {{ @$posts['address'] }}
 
 ■ご希望・ご質問
-{{ Arr::get($posts, 'message', '-') }}
+{{ Arr::get($posts, 'comment', '-') }}

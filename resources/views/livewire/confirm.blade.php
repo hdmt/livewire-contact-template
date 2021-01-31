@@ -1,4 +1,5 @@
 <div>
+<div>以下の内容で送信します。送信ボタンを押す前にご確認ください。</div>
     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
     <div class="border-t border-gray-200">
         <dl>
@@ -44,7 +45,7 @@
             @endforeach
             </dd>
         </div>
-        <div class="bg-gray-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">
             郵便番号
             </dt>
@@ -52,20 +53,20 @@
             {{ @$posts['zipcode'] }}
             </dd>
         </div>
-        <div class="bg-gray-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">
             住所
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{ @$posts['prefecture'] }} {{ @$posts['address'] }}
+            {{ @$prefectures[ $posts['prefecture'] ] }} {{ @$posts['address'] }}
             </dd>
         </div>
-        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-gray-500">
             ご希望・ご質問
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-            {{ @$posts['comment'] }}
+            {!! nl2br(e(@$posts['comment'])) !!}
             </dd>
         </div>
         </dl>

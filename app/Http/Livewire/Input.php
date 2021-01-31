@@ -43,12 +43,14 @@ class Input extends Component
 
     public function updatedPosts()
     {
-        $this->posts['request'] = array_filter(
-            $this->posts['request'],
-            function($value) {
-                return $value !== false;
-            }
-        );
+        if(!empty($this->posts['request'])) {
+            $this->posts['request'] = array_filter(
+                $this->posts['request'],
+                function($value) {
+                    return $value !== false;
+                }
+            );
+        }
     }
 
     public function render()
