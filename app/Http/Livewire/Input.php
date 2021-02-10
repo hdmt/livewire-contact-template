@@ -14,8 +14,6 @@ class Input extends Component
         'posts.name' => 'required',
         'posts.mail' => 'required|email',
         'posts.request' => 'required|array',
-        'posts.tel' => 'required',
-
     ];
 
     protected $messages = [

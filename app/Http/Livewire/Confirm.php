@@ -35,8 +35,6 @@ class Confirm extends Component
             Mail::to($recipient)->send(new Contact($this->posts));
         }
 
-        
-
         // 完了画面へ
         return redirect()->route('complete');
     }
