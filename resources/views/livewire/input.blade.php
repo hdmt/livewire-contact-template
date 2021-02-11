@@ -23,7 +23,11 @@
                 @foreach ($requestList as $key => $request)
                 <div>
                     <label class="inline-flex items-center">
-                        <input wire:model="posts.request.{{$key}}" name="" value="{{$key}}" type="checkbox" class="form-checkbox h-5 w-5">
+                        <input 
+                            wire:model="posts.request.{{$key}}"
+                            value="{{$key}}" 
+                            type="checkbox" 
+                            class="form-checkbox h-5 w-5">
                         <span class="ml-2">{{$request}}</span>
                     </label>
                 </div>

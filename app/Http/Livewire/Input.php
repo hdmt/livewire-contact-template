@@ -26,14 +26,12 @@ class Input extends Component
         $this->requestList = config('contact.requests');
         $this->prefectures = config('contact.prefectures');
         $this->posts = session()->get('posts');
-
     }
 
     public function confirm()
     {
         $this->validate();
 
-        //セッション登録
         session()->put('posts', $this->posts);
 
         return redirect()->route('confirm');
@@ -41,20 +39,20 @@ class Input extends Component
 
     public function updatedPosts()
     {
-        if(!empty($this->posts['request'])) {
-            $this->posts['request'] = array_filter(
-                $this->posts['request'],
-                function($value) {
-                    return $value !== false;
-                }
-            );
+        if (empty($this->posts['request'])) {
+            return null;
         }
+
+        $this->posts['request'] = array_filter(
+            $this->posts['request'],
+            function ($value) {
+                return $value !== false;
+            }
+        );
     }
 
     public function render()
     {
         return view('livewire.input');
     }
-
-
 }
