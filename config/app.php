@@ -230,8 +230,8 @@ return [
     ],
 
     /*
-    * お問い合わせフォーム
+    * お問い合わせフォーム 管理者
     */
-    'admin_address' => env('MAIL_ADMIN_ADDRESS'),
+    'admin_address' => env('MAIL_TO_ADDRESS'),
 
 ];
