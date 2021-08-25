@@ -37,6 +37,10 @@ class Input extends Component
         return redirect()->route('confirm');
     }
 
+    /*
+    * make checkbox retain values.
+    * updatedFoo : Runs after a property called $foo is updated
+    */
     public function updatedPosts()
     {
         if (empty($this->posts['request'])) {
